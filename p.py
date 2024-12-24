@@ -6,8 +6,8 @@ import os
 app = Flask(__name__)
 
 # Configure OpenAI with a custom base URL and API key
-openai.api_key = "ng-bqJYSTxbVbiU6wdysRTXqdBycGyNR"
-openai.api_base = "https://api.naga.ac/v1"  # Your custom API base URL
+openai.api_key = "API"
+openai.api_base = "Use your own"  # Your custom API base URL
 
 # Knowledge base for emergency protocols (simplified example)
 protocols = {

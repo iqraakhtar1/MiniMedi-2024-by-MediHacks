@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency AI Dispatcher</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 600px; margin: auto; }
+        textarea, input { width: 100%; margin-bottom: 10px; padding: 10px; }
+        button { padding: 10px 20px; background-color: #007BFF; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Emergency AI Dispatcher</h1>
+        <form id="promptForm">
+            <textarea id="inputText" placeholder="Describe the emergency scenario..." rows="4"></textarea>
+            <button type="button" onclick="submitPrompt()">Get Recommendation</button>
+        </form>
+        <h3>Recommendation:</h3>
+        <p id="output"></p>
+    </div>
+    <script>
+        async function submitPrompt() {
+            const inputText = document.getElementById('inputText').value;
+            const response = await fetch('/prompt', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ input: inputText })
+            });
+            const data = await response.json();
+            document.getElementById('output').innerText = data.recommendation || data.error;
+        }
+    </script>
+</body>
+</html>
